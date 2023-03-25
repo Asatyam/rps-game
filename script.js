@@ -24,4 +24,31 @@ function getComputerChoice() {
   return choices[randomChoice];
 }
 
+/* The function compares the choices of the user and computer 
+and returns the result based on the rules of the game */
+
+function compareChoice(userChoice, computerChoice) {
+  if (userChoice == 'rock') {
+    if (computerChoice == 'rock') {
+      return 'tie';
+    } else if (computerChoice == 'paper') {
+      return 'lose';
+    } else return 'win';
+  } else if (userChoice == 'paper') {
+    if (computerChoice == 'rock') {
+      return 'win';
+    } else if (computerChoice == 'paper') {
+      return 'tie';
+    } else return 'lose';
+  } else {
+    if (computerChoice == 'rock') {
+      return 'lose';
+    } else if (computerChoice == 'paper') {
+      return 'win';
+    } else return 'tie';
+  }
+}
+
+
+
 
