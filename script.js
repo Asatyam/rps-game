@@ -61,7 +61,41 @@ function getWinner(userScore,compScore)
     } else return "Tie";
 }
 
+/*The function consists of loop which run for 5 times. In each iteration we get the 
+choices from the user and computer and compare them to increment the winner's score.
+Finally, we display the winner or conclude that it's a tie. */
 
+function game() {
+     let userScore = 0;
+     let compScore = 0;
+     
+  for (let i = 0; i < 5; i++) {
+    let userChoice = getUserChoice();
+    let computerChoice = getComputerChoice();
+   
+    let outcome = compareChoice(userChoice, computerChoice);
+
+    if (outcome === 'win') {
+      console.log('You win this round');
+      userScore++;
+    } else if (outcome === 'lose') {
+      console.log('You lose this round');
+      compScore++;
+    } else {
+      console.log('This round is a tie');
+    }
+  }
+
+  const winner = getWinner(userScore, compScore);
+
+  if (winner !== 'Tie') {
+    console.log(`Winner : ${winner}`);
+  } else {
+    console.log('The game ends in a tie');
+  }
+}
+
+game();
 
 
 
