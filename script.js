@@ -16,4 +16,12 @@ function getUserChoice() {
   } while (!choices.includes(userChoice));
   return userChoice;
 }
+/* The function generates the random number between 0 and 3 and floors it.
+Then, we return the choice using it as the index of the choices array */
+
+function getComputerChoice() {
+  const randomChoice = Math.floor(Math.random() * 3);
+  return choices[randomChoice];
+}
+
 
