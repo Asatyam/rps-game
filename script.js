@@ -16,6 +16,8 @@ function getUserChoice() {
   } while (!choices.includes(userChoice));
   return userChoice;
 }
+
+
 /* The function generates the random number between 0 and 3 and floors it.
 Then, we return the choice using it as the index of the choices array */
 
@@ -48,6 +50,18 @@ function compareChoice(userChoice, computerChoice) {
     } else return 'tie';
   }
 }
+
+ /*The function gets the winner based on the scores of the players.*/
+function getWinner(userScore,compScore)
+{
+    if(userScore > compScore){
+        return "You";
+    } else if (userScore < compScore){
+        return "Computer";
+    } else return "Tie";
+}
+
+
 
 
 
