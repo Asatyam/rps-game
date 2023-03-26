@@ -127,15 +127,6 @@ function compareChoice(userChoice, compChoice) {
   }
 }
 
- /*The function gets the winner based on the scores of the players.*/
-function getWinner(userScore,compScore)
-{
-    if(userScore > compScore){
-        return "You";
-    } else if (userScore < compScore){
-        return "Computer";
-    } else return "Tie";
-}
 
 function game(e){
 
@@ -153,16 +144,15 @@ function game(e){
   outcome = compareChoice(btn, compChoice);
 
   if (outcome === 'win') {
-    console.log('You win this round');
+    displayRoundResult("player");
     userScore++;
     console.log(`${userScore} ${compScore}`);
   } else if (outcome === 'lose') {
-    console.log('You lose this round');
+    displayRoundResult("computer");
     compScore++;
     console.log(`${userScore} ${compScore}`);
   } else {
-    console.log('This round is a tie');
-    console.log(`${userScore} ${compScore}`);
+    displayRoundResult("Tie");
   }
 
   displayPoints(userScore, 0);
@@ -176,11 +166,35 @@ function game(e){
 
 }
 
+function displayRoundResult(winner){
+
+ 
+  let roundResultPara = document.querySelector('.roundResult>p');
+  if(!roundResultPara)
+  {
+    const roundResultDiv = document.createElement('div');
+    roundResultDiv.setAttribute('class', 'roundResult');
+    roundResultPara = document.createElement('p');
+     roundResultDiv.appendChild(roundResultPara);
+     const playerChoicesDiv = document.querySelector('.playerChoices');
+     main.insertBefore(roundResultDiv, playerChoicesDiv);
+  }
+  if(winner=='Tie'){
+
+    roundResultPara.textContent = `Last Round was Tied! `;
+
+  } else{
+
+    roundResultPara.textContent = `Winner of this round: ${winner.toUpperCase()}`;
+
+  }
+}
+
 function displayWinner() {
   const winnerDiv = document.createElement('div');
   const winnerPara = document.createElement('p');
   winnerDiv.setAttribute('class', 'winner');
-  winnerPara.textContent = `Winner : ${
+  winnerPara.textContent = `Winner of the Game : ${
     userScore > compScore ? 'Player' : 'Computer'
   }`;
   winnerDiv.appendChild(winnerPara);
@@ -193,7 +207,7 @@ function playAgain(){
   playAgainBtn.setAttribute('class','playAgain');  
   playAgainBtn.innerHTML = "<p>Play Again</p>";
   playAgainBtn.addEventListener('click',()=>{
-    indow.location.reload(true);
+    window.location.reload(true);
   })
   main.appendChild(playAgainBtn);
 }
@@ -223,9 +237,6 @@ displayCompChoice(compChoice);
 displayPoints(userScore, 0);
 displayPoints(compScore, 1);
 
-
-
-const winner = getWinner(userScore, compScore);
 
 
 

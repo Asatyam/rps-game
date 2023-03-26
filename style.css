@@ -20,7 +20,7 @@ body{
 
 .heading{
     background-color: teal;
-    order: -1;
+    order: 1;
 }
 .heading>p{
     padding:0.5em;
@@ -90,6 +90,18 @@ img{
     margin:15px;
     padding:10px 20px;
     background-color: coral;
-    
+
     align-self: center;
+}
+
+/* roundWinner */
+.roundResult{
+    background-color: lightgreen;
+    padding: 1em;
+    text-align: center;
+    order:3;
+}
+
+.roundResult>p{
+    font-size: 1.5em;
 }
