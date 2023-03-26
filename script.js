@@ -65,20 +65,7 @@ function displayUserChoices(index){
     main.appendChild(playerChoicesDiv);
   }
 
-  
-  
-  let btnValue;
-  switch(index){
-    case 0:
-      btnValue = "ROCK";
-      break;
-    case 1:
-      btnValue = "PAPER";
-      break;
-    case 2:
-      btnValue = "SCISSORS";
-      break;
-  }
+  let btnValue = choices[index].toUpperCase();
 
   const choiceDiv = document.createElement('div');
 
@@ -87,22 +74,11 @@ function displayUserChoices(index){
   choiceBtn.setAttribute('class',`${btnValue.toLowerCase()}`);
 
   choiceBtn.textContent = btnValue;
+  choiceBtn.innerHTML = `<img src='./images/${btnValue.toLowerCase()}.png'>`
   choiceDiv.appendChild(choiceBtn);
   playerChoicesDiv.appendChild(choiceDiv);
   
 }
-
-/* The function generates a prompt for user to enter his/her choice and
-convert it into lowercase. The do-while loop runs until the user enters
-a valid choice which is then returned. */
-
-function getUserChoice() {
-  let userChoice;
- 
-}
-
-
-
 
 /* The function generates the random number between 0 and 3 and floors it.
 Then, we return the choice using it as the index of the choices array */
@@ -110,6 +86,16 @@ Then, we return the choice using it as the index of the choices array */
 function getComputerChoice() {
   const randomChoice = Math.floor(Math.random() * 3);
   return choices[randomChoice];
+}
+
+ /*The function gets the winner based on the scores of the players.*/
+function getWinner(userScore,compScore)
+{
+    if(userScore > compScore){
+        return "You";
+    } else if (userScore < compScore){
+        return "Computer";
+    } else return "Tie";
 }
 
 /* The function compares the choices of the user and computer 
@@ -137,52 +123,71 @@ function compareChoice(userChoice, computerChoice) {
   }
 }
 
- /*The function gets the winner based on the scores of the players.*/
-function getWinner(userScore,compScore)
-{
-    if(userScore > compScore){
-        return "You";
-    } else if (userScore < compScore){
-        return "Computer";
-    } else return "Tie";
+/* The function generates a prompt for user to enter his/her choice and
+convert it into lowercase. The do-while loop runs until the user enters
+a valid choice which is then returned. */
+
+async function getUserChoice() {
+  let userChoice;
+
+  const btns = document.querySelectorAll("button");
+
+  btns.forEach((btn)=>{ 
+    btn.addEventListener('click',(e)=>{
+     userChoice = btn.className;
+    })
+
+  })
+
+ 
 }
 
-/*The function consists of loop which run for 5 times. In each iteration we get the 
-choices from the user and computer and compare them to increment the winner's score.
-Finally, we display the winner or conclude that it's a tie. */
-
-function game() {
-
+function creatGameSetting()
+{
     createHeading();
+    for (let i = 0; i < 3; i++) {
+      displayUserChoices(i);
+    }
+    let userChoice;
+  const btns = document.querySelectorAll('button');
+  btns.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      game(btn.className);
+    });
+  });
+  return userChoice;
 
+}
+async function game(userChoice) {
 
      let userScore = 0;
      let compScore = 0;
-     
-     for(let i=0;i<3;i++){
-        displayUserChoices(i);
-     }
+
+    let userChoice, compChoice;
     
+    
+      
 
-    let userChoice = getUserChoice();
-    let computerChoice = getComputerChoice();
-   
-    let outcome = compareChoice(userChoice, computerChoice);
+       compChoice = getComputerChoice();
 
-    if (outcome === 'win') {
-      console.log('You win this round');
-      userScore++;
-    } else if (outcome === 'lose') {
-      console.log('You lose this round');
-      compScore++;
-    } else {
-      console.log('This round is a tie');
-    }
-  displayCompChoice(computerChoice);
+      console.log(userChoice);
+      let outcome = compareChoice(userChoice, compChoice);
 
-  displayPoints(userScore,0);
-  displayPoints(compScore,1);
+      if (outcome === 'win') {
+        console.log('You win this round');
+        userScore++;
+      } else if (outcome === 'lose') {
+        console.log('You lose this round');
+        compScore++;
+      } else {
+        console.log('This round is a tie');
+      }
 
+       displayCompChoice(compChoice);
+
+       displayPoints(userScore, 0);
+       displayPoints(compScore, 1);
+    
   
 
   const winner = getWinner(userScore, compScore);
@@ -194,7 +199,7 @@ function game() {
   }
 }
 
-
+creatGameSetting();
 game();
 
 
