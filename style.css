@@ -64,3 +64,13 @@ body{
     order:3;
 }
 
+.playerChoices>div>button{
+    width:150px;
+    height:150px;
+    background-color: transparent;
+}
+
+img{
+    height: 100px;
+    width:100px;
+}

@@ -67,26 +67,15 @@ function displayUserChoices(index){
 
   
   
-  let btnValue;
-  switch(index){
-    case 0:
-      btnValue = "ROCK";
-      break;
-    case 1:
-      btnValue = "PAPER";
-      break;
-    case 2:
-      btnValue = "SCISSORS";
-      break;
-  }
+  let btnValue = choices[index];
 
   const choiceDiv = document.createElement('div');
 
   const choiceBtn = document.createElement('button');
   
-  choiceBtn.setAttribute('class',`${btnValue.toLowerCase()}`);
+  choiceBtn.setAttribute('class',`${btnValue}`);
 
-  choiceBtn.textContent = btnValue;
+  choiceBtn.innerHTML = `<img src="./images/${btnValue}.png">`;
   choiceDiv.appendChild(choiceBtn);
   playerChoicesDiv.appendChild(choiceDiv);
   
