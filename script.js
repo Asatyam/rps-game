@@ -1,4 +1,24 @@
 const choices = ['rock', 'paper', 'scissors'];
+const main = document.querySelector('.main');
+
+
+function createHeading() {
+  
+  const heading = document.createElement('div');
+  heading.setAttribute('class', 'heading');
+  
+  const headingText = document.createElement('p');
+  headingText.textContent = "ROCK PAPER SCISSORS";
+
+  heading.appendChild(headingText);
+  main.appendChild(heading);
+}
+
+
+function createGame()
+{
+  createHeading();
+}
 
 
 /* The function generates a prompt for user to enter his/her choice and
@@ -7,15 +27,10 @@ a valid choice which is then returned. */
 
 function getUserChoice() {
   let userChoice;
-  do {
-    userChoice = prompt('Enter one of your choices: Rock, Paper or Scissors');
-    userChoice = userChoice.toLowerCase();
-    if (!choices.includes(userChoice)) {
-      alert('Invalid Choice!');
-    }
-  } while (!choices.includes(userChoice));
-  return userChoice;
+ 
 }
+
+
 
 
 /* The function generates the random number between 0 and 3 and floors it.
@@ -69,7 +84,7 @@ function game() {
      let userScore = 0;
      let compScore = 0;
      
-  for (let i = 0; i < 5; i++) {
+ 
     let userChoice = getUserChoice();
     let computerChoice = getComputerChoice();
    
@@ -84,7 +99,7 @@ function game() {
     } else {
       console.log('This round is a tie');
     }
-  }
+  
 
   const winner = getWinner(userScore, compScore);
 
@@ -95,6 +110,7 @@ function game() {
   }
 }
 
+createGame();
 game();
 
 
