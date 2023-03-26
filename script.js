@@ -138,6 +138,11 @@ function getWinner(userScore,compScore)
 }
 
 function game(e){
+
+
+  if (userScore == 5 || compScore == 5) {
+    return;
+  }
   let outcome;
   const btn =(e.target.parentElement.className);
   round++;
@@ -166,10 +171,32 @@ function game(e){
 
   if (userScore == 5 || compScore == 5) {
     displayWinner();
+    playAgain();
   }
 
 }
 
+function displayWinner() {
+  const winnerDiv = document.createElement('div');
+  const winnerPara = document.createElement('p');
+  winnerDiv.setAttribute('class', 'winner');
+  winnerPara.textContent = `Winner : ${
+    userScore > compScore ? 'Player' : 'Computer'
+  }`;
+  winnerDiv.appendChild(winnerPara);
+  main.appendChild(winnerDiv);
+}
+
+function playAgain(){
+
+  const playAgainBtn = document.createElement('button');
+  playAgainBtn.setAttribute('class','playAgain');  
+  playAgainBtn.innerHTML = "<p>Play Again</p>";
+  playAgainBtn.addEventListener('click',()=>{
+    indow.location.reload(true);
+  })
+  main.appendChild(playAgainBtn);
+}
 
 createHeading();
 
@@ -197,15 +224,6 @@ displayPoints(userScore, 0);
 displayPoints(compScore, 1);
 
 
-function displayWinner()
-{
-  const winnerDiv = document.createElement('div');
-  const winnerPara = document.createElement('p');
-  winnerDiv.setAttribute('class','winner');
-  winnerPara.textContent = `Winner : ${userScore>compScore?"Player":"Computer"}`;
-  winnerDiv.appendChild(winnerPara);
-  main.appendChild(winnerDiv);
-}
 
 const winner = getWinner(userScore, compScore);
 
