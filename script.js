@@ -4,20 +4,44 @@ const main = document.querySelector('.main');
 
 function createHeading() {
   
-  const heading = document.createElement('div');
-  heading.setAttribute('class', 'heading');
+  const headingDiv = document.createElement('div');
+  headingDiv.setAttribute('class', 'heading');
   
-  const headingText = document.createElement('p');
-  headingText.textContent = "ROCK PAPER SCISSORS";
+  const headingPara = document.createElement('p');
+  headingPara.textContent = "ROCK PAPER SCISSORS";
 
-  heading.appendChild(headingText);
-  main.appendChild(heading);
+  headingDiv.appendChild(headingPara);
+  main.appendChild(headingDiv);
 }
 
 
-function createGame()
-{
-  createHeading();
+function displayPoints(userScore, compScore){
+
+  const pointsDiv = document.createElement('div');
+  pointsDiv.setAttribute('class','points');
+
+
+  const playerPointDiv = document.createElement('div');
+  const compPointDiv = document.createElement('div');
+
+   playerPointDiv.setAttribute('class','playerPoints');
+   compPointDiv.setAttribute('class','compPoints');
+
+
+  const playerPointPara = document.createElement('p');
+  const compPointPara = document.createElement('p');
+
+  playerPointPara.textContent = `PLAYER : ${userScore}`;
+  compPointPara.textContent = `COMPUTER : ${compScore}`;
+
+  playerPointDiv.appendChild(playerPointPara);
+  compPointDiv.appendChild(compPointPara);
+
+  pointsDiv.appendChild(playerPointDiv);
+  pointsDiv.appendChild(compPointDiv);
+
+  main.appendChild(pointsDiv);
+
 }
 
 
@@ -81,6 +105,10 @@ choices from the user and computer and compare them to increment the winner's sc
 Finally, we display the winner or conclude that it's a tie. */
 
 function game() {
+
+    createHeading();
+
+
      let userScore = 0;
      let compScore = 0;
      
@@ -100,6 +128,8 @@ function game() {
       console.log('This round is a tie');
     }
   
+  displayPoints(userScore,compScore);
+
 
   const winner = getWinner(userScore, compScore);
 
@@ -110,7 +140,7 @@ function game() {
   }
 }
 
-createGame();
+
 game();
 
 
