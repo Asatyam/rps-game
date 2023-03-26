@@ -15,32 +15,25 @@ function createHeading() {
 }
 
 
-function displayPoints(userScore, compScore){
+function displayPoints(userScore, index){
 
-  const pointsDiv = document.createElement('div');
+  let pointsDiv = document.querySelector('.points');
+  if(!pointsDiv){
+    pointsDiv = document.createElement('div');
+      main.appendChild(pointsDiv);
+  }
+   
   pointsDiv.setAttribute('class','points');
 
+  const user = index?"comp":"player";
+  
+  const userPointDiv = document.createElement('div');
+  userPointDiv.setAttribute('class', `${user}Points`);
+  const userPointPara = document.createElement('p');
+  userPointPara.textContent = `${user.toUpperCase()} : ${userScore}`;
+  userPointDiv.appendChild(userPointPara);
+  pointsDiv.appendChild(userPointDiv);
 
-  const playerPointDiv = document.createElement('div');
-  const compPointDiv = document.createElement('div');
-
-   playerPointDiv.setAttribute('class','playerPoints');
-   compPointDiv.setAttribute('class','compPoints');
-
-
-  const playerPointPara = document.createElement('p');
-  const compPointPara = document.createElement('p');
-
-  playerPointPara.textContent = `PLAYER : ${userScore}`;
-  compPointPara.textContent = `COMPUTER : ${compScore}`;
-
-  playerPointDiv.appendChild(playerPointPara);
-  compPointDiv.appendChild(compPointPara);
-
-  pointsDiv.appendChild(playerPointDiv);
-  pointsDiv.appendChild(compPointDiv);
-
-  main.appendChild(pointsDiv);
 
 }
 
@@ -128,7 +121,8 @@ function game() {
       console.log('This round is a tie');
     }
   
-  displayPoints(userScore,compScore);
+  displayPoints(userScore,0);
+  displayPoints(compScore,1);
 
 
   const winner = getWinner(userScore, compScore);
