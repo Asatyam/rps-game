@@ -57,13 +57,15 @@ function displayCompChoice(compChoice){
 
 function displayUserChoices(index){
 
-  let playerChoicesDiv = document.querySelector('.playerChoicesDiv');
+  let playerChoicesDiv = document.querySelector('.playerChoices');
   if(!playerChoicesDiv)
   {
     playerChoicesDiv = document.createElement('div');
-    playerChoicesDiv.setAttribute('class', 'playerChoices');
+     playerChoicesDiv.setAttribute('class', 'playerChoices');
     main.appendChild(playerChoicesDiv);
   }
+
+  
   
   let btnValue;
   switch(index){
@@ -77,7 +79,7 @@ function displayUserChoices(index){
       btnValue = "SCISSORS";
       break;
   }
-  
+
   const choiceDiv = document.createElement('div');
 
   const choiceBtn = document.createElement('button');
