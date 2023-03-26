@@ -14,10 +14,11 @@ function createHeading() {
   main.appendChild(headingDiv);
 }
 
-
+/* the index is 0 for player and 1 for computer */
 function displayPoints(userScore, index){
 
   let pointsDiv = document.querySelector('.points');
+  
   if(!pointsDiv){
     pointsDiv = document.createElement('div');
       main.appendChild(pointsDiv);
@@ -29,11 +30,28 @@ function displayPoints(userScore, index){
   
   const userPointDiv = document.createElement('div');
   userPointDiv.setAttribute('class', `${user}Points`);
+
   const userPointPara = document.createElement('p');
   userPointPara.textContent = `${user.toUpperCase()} : ${userScore}`;
+
   userPointDiv.appendChild(userPointPara);
   pointsDiv.appendChild(userPointDiv);
 
+
+}
+
+
+function displayCompChoice(compChoice){
+
+  const compChoiceDiv = document.createElement('div');
+  compChoiceDiv.setAttribute('class','compChoice');
+
+  const compChoicePara = document.createElement('p');
+
+  compChoicePara.textContent = `Computer's Choice: ${compChoice.toUpperCase()}`;
+
+  compChoiceDiv.appendChild(compChoicePara);
+  main.appendChild(compChoiceDiv);
 
 }
 
@@ -124,6 +142,7 @@ function game() {
   displayPoints(userScore,0);
   displayPoints(compScore,1);
 
+  displayCompChoice(computerChoice);
 
   const winner = getWinner(userScore, compScore);
 

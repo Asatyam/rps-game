@@ -38,6 +38,15 @@ body{
 }
 .playerPoints>p,.compPoints>p{
     font-size: 1.5em;
-
-
 }
+
+/* for compChoice */
+.compChoice{
+    background-color: beige;
+    padding: 1em;
+    text-align: center;
+}
+.compChoice>p{
+    font-size:1.3em;
+}
+
