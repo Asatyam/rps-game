@@ -62,17 +62,5 @@ body{
     justify-content: space-evenly;
     padding:32px;
     order:3;
-    flex:1;
 }
 
-.playerChoices>div>button{
-    width: 150px;
-    height: 150px;
-    background-color: transparent;
-}
-
-img{
-    width: 120px;
-    height: 120px;
-
-}
