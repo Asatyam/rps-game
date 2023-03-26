@@ -12,12 +12,15 @@ body{
 
 .main{
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* for heading */
 
 .heading{
     background-color: teal;
+    order: -1;
 }
 .heading>p{
     padding:0.5em;
@@ -35,6 +38,8 @@ body{
     align-items: center;
     gap:20px;
     background-color: aliceblue;
+    order:1;
+    
 }
 .playerPoints>p,.compPoints>p{
     font-size: 1.5em;
@@ -45,8 +50,17 @@ body{
     background-color: beige;
     padding: 1em;
     text-align: center;
+    order:2;
 }
 .compChoice>p{
     font-size:1.3em;
+}
+
+/* for playerChoices */
+.playerChoices{
+    display: flex;
+    justify-content: space-evenly;
+    padding:32px;
+    order:3;
 }
 

@@ -18,7 +18,7 @@ function createHeading() {
 function displayPoints(userScore, index){
 
   let pointsDiv = document.querySelector('.points');
-  
+
   if(!pointsDiv){
     pointsDiv = document.createElement('div');
       main.appendChild(pointsDiv);
@@ -55,6 +55,40 @@ function displayCompChoice(compChoice){
 
 }
 
+function displayUserChoices(index){
+
+  let playerChoicesDiv = document.querySelector('.playerChoicesDiv');
+  if(!playerChoicesDiv)
+  {
+    playerChoicesDiv = document.createElement('div');
+    playerChoicesDiv.setAttribute('class', 'playerChoices');
+    main.appendChild(playerChoicesDiv);
+  }
+  
+  let btnValue;
+  switch(index){
+    case 0:
+      btnValue = "ROCK";
+      break;
+    case 1:
+      btnValue = "PAPER";
+      break;
+    case 2:
+      btnValue = "SCISSORS";
+      break;
+  }
+  
+  const choiceDiv = document.createElement('div');
+
+  const choiceBtn = document.createElement('button');
+  
+  choiceBtn.setAttribute('class',`${btnValue.toLowerCase()}`);
+
+  choiceBtn.textContent = btnValue;
+  choiceDiv.appendChild(choiceBtn);
+  playerChoicesDiv.appendChild(choiceDiv);
+  
+}
 
 /* The function generates a prompt for user to enter his/her choice and
 convert it into lowercase. The do-while loop runs until the user enters
@@ -123,7 +157,11 @@ function game() {
      let userScore = 0;
      let compScore = 0;
      
- 
+     for(let i=0;i<3;i++){
+        displayUserChoices(i);
+     }
+    
+
     let userChoice = getUserChoice();
     let computerChoice = getComputerChoice();
    
@@ -138,11 +176,12 @@ function game() {
     } else {
       console.log('This round is a tie');
     }
-  
+  displayCompChoice(computerChoice);
+
   displayPoints(userScore,0);
   displayPoints(compScore,1);
 
-  displayCompChoice(computerChoice);
+  
 
   const winner = getWinner(userScore, compScore);
 
