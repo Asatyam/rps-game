@@ -28,7 +28,7 @@ function displayPoints(userScore, index){
 
   if(round)
   {
-    const userPointPara = document.querySelector(`.${user}Points:nth-child(${index+1})`);
+    const userPointPara = document.querySelector(`.${user}Points>p`);
     userPointPara.textContent = `${user.toUpperCase()} : ${userScore}`;
     return;
   }
@@ -38,7 +38,7 @@ function displayPoints(userScore, index){
 
   const userPointPara = document.createElement('p');
   userPointPara.textContent = `${user.toUpperCase()} : ${userScore}`;
-  
+
   userPointDiv.appendChild(userPointPara);
   pointsDiv.appendChild(userPointDiv);
   
@@ -47,6 +47,11 @@ function displayPoints(userScore, index){
 
 function displayCompChoice(compChoice){
 
+  if(round){
+    const compChoicePara = document.querySelector(".compChoice>p");
+    compChoicePara.textContent = `Computer's Choice: ${compChoice.toUpperCase()}`;
+    return;
+  }
   const compChoiceDiv = document.createElement('div');
   compChoiceDiv.setAttribute('class','compChoice');
 
@@ -55,7 +60,7 @@ function displayCompChoice(compChoice){
   if(!compChoice){
     compChoicePara.textContent = "Computer's Choice:";
   } else{
-    compChoicePara.textContent =  `Computer's Choice: ${compChoice.toUpperCase()}`;
+    
   }
    
   compChoiceDiv.appendChild(compChoicePara);
@@ -133,13 +138,14 @@ function getWinner(userScore,compScore)
 }
 
 function game(e){
+  let outcome;
   const btn =(e.target.parentElement.className);
   round++;
   let compChoice = getCompChoice();
 
-  //displayCompChoice(compChoice);
-
-  outcome = compareChoice(btn.className, compChoice);
+  displayCompChoice(compChoice);
+  console.log(`${btn} ${compChoice}`);
+  outcome = compareChoice(btn, compChoice);
 
   if (outcome === 'win') {
     console.log('You win this round');
@@ -157,6 +163,11 @@ function game(e){
   displayPoints(userScore, 0);
   console.log(`${userScore} ${compScore}`);
   displayPoints(compScore, 1);
+
+  if (userScore == 5 || compScore == 5) {
+    displayWinner();
+  }
+
 }
 
 
@@ -176,7 +187,7 @@ btns.forEach((btn) => {
   btn.addEventListener('click', game);
 });
 
-let outcome;
+
 let compChoice;
 let round = 0;
 displayCompChoice(compChoice);
@@ -186,16 +197,17 @@ displayPoints(userScore, 0);
 displayPoints(compScore, 1);
 
 
-
-
+function displayWinner()
+{
+  const winnerDiv = document.createElement('div');
+  const winnerPara = document.createElement('p');
+  winnerDiv.setAttribute('class','winner');
+  winnerPara.textContent = `Winner : ${userScore>compScore?"Player":"Computer"}`;
+  winnerDiv.appendChild(winnerPara);
+  main.appendChild(winnerDiv);
+}
 
 const winner = getWinner(userScore, compScore);
-
-if (winner !== 'Tie') {
-  console.log(`Winner : ${winner}`);
-} else {
-  console.log('The game ends in a tie');
-}
 
 
 
