@@ -60,19 +60,21 @@ body{
 .playerChoices{
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap:20px;
     padding:32px;
     order:3;
 }
 
 .playerChoices>div>button{
-    width:150px;
-    height:150px;
+    width:8em;
+    height:8em;
     background-color: transparent;
 }
 
 img{
-    height: 100px;
-    width:100px;
+    height: 6em;
+    width:6em;
 }
 /*winner*/
 
